@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    Animator animator;
     Vector2 move;
     Vector2 facing = Vector2.down;
     [SerializeField] float attackRange = 0.7f;
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,10 +33,14 @@ public class PlayerMovement : MonoBehaviour
         if (move != Vector2.zero)
         {
             facing = move;
+            animator.SetFloat("Horizontal", facing.x);
+            animator.SetFloat("Vertical", facing.y);
+
         }
-        
+
         move = move.normalized;
-        
+        animator.SetFloat("Speed", move.magnitude);
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Attack();
@@ -42,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (invetoryPanel.activeSelf)
         {
             move = Vector2.zero;
+            animator.SetFloat("Speed", 0);
             return;
         }
     }
