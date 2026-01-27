@@ -16,10 +16,10 @@ public class CraftingManager : MonoBehaviour
 
         foreach (CraftingRequirement req in currentRecipe.requirements)
         {
-            if(!inventory.HasEnough(req.resourceType, req.amount))
+            if (!inventory.HasEnough(req.resourceType, req.amount))
             {
                 Debug.Log("Brakuje surowca");
-                    return;
+                return;
             }
         }
 
@@ -39,5 +39,17 @@ public class CraftingManager : MonoBehaviour
 
     }
 
-   
+    public bool AvailableCraft(int index) {
+        CraftingRecipe currentRecipe = recipes[index];
+
+        foreach (CraftingRequirement req in currentRecipe.requirements)
+        {
+            if (!inventory.HasEnough(req.resourceType, req.amount))
+            {
+                return false;
+            }
+        }
+        return true;
+    } 
+
 }

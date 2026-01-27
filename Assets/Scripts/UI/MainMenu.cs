@@ -7,27 +7,32 @@ public class MainMenu : MonoBehaviour
 {
     public Button loadButton;
     public string gameScene;
-
+    public static bool LoadSave = false;
 
     void Start()
     {
-        string filePath = Application.persistentDataPath + "/ savegame.json";
+        string filePath = Application.persistentDataPath + "/savegame.json";
 
         if (!File.Exists(filePath))
         {
-        loadButton.interactable = false
+            loadButton.interactable = false;
         }
 
     }
 
-    void NewGame()
+    public void NewButton()
     {
+        LoadSave = false;
+        SceneManager.LoadScene(gameScene);
+
+
 
     }
 
-    void LoadGame()
+    public void LoadButton()
     {
-
+        LoadSave = true;
+        SceneManager.LoadScene(gameScene);
     }
 
 

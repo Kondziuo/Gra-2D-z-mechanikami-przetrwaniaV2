@@ -19,7 +19,26 @@ public class Trap : MonoBehaviour
                 hp.TakeDamage(20f);
             }
 
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+
+            Debug.Log("oj jak boli oj jak boli");
+
+            EnemyHealth hpE = collision.GetComponent<EnemyHealth>();
+
+            if (hpE != null)
+            {
+                hpE.TakeDamage(20f);
             }
+
+        }
+
+
+
+
+
     }
 
 
