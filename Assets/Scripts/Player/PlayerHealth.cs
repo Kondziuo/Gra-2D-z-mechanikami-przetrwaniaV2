@@ -4,9 +4,11 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100;
+    [SerializeField] GameObject DeathPanel;
     public float currentHealth;
     
     public Slider healthSlider;
+    
 
     void Start()
     {
@@ -46,8 +48,8 @@ public class PlayerHealth : MonoBehaviour
     }
     void Die()
         {
-            Debug.Log("Zgin¹³eœ");
-            gameObject.SetActive(false);   
+            DeathPanel.SetActive(true);
+            gameObject.SetActive(false);
         }
     
 

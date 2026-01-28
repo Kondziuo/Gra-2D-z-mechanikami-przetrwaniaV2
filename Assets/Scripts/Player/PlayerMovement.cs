@@ -81,7 +81,8 @@ public class PlayerMovement : MonoBehaviour
             }
         
             Stone stone = hit.collider.GetComponent<Stone>();
-            if (stone != null) { 
+            if (stone != null) 
+            { 
             stone.Hit(inventory);
             }
 
@@ -91,6 +92,15 @@ public class PlayerMovement : MonoBehaviour
                 meat.Hit(inventory);
             }
 
+            AngryTicTac ticTac = hit.collider.GetComponent<AngryTicTac>();
+           
+            if (ticTac != null)
+            {
+                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+               
+                enemyHealth.TakeDamage(20f);
+
+            }
         }
 
 
